@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSV Viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        td, th {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSV Viewer</h1>
+    <input type="file" id="csvFile" name="file" accept=".csv">
+    <div id="output"></div>
+
+    <script>
+        document.getElementById('csvFile').addEventListener('change', function(evt) {
+            var file = evt.target.files[0];
+
+            Papa.parse(file, {
+                header: true,
+                dynamicTyping: true,
+                complete: function(results) {
+                    console.log(results.data);
+                    displayData(results.data);
+                }
+            });
+        });
+
+        function displayData(data) {
+            var outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = ''; // clear the output div
+
+            var table = document.createElement('table');
+
+            // create table header from keys of first object
+            var firstRow = data[0];
+            var tr = document.createElement('tr');
+            for (var key in firstRow) {
+                var th = document.createElement('th');
+                th.textContent = key;
+                tr.appendChild(th);
+            }
+            table.appendChild(tr);
+
+            // create table rows
+            data.forEach(function(row) {
+                var tr = document.createElement('tr');
+                for (var key in row) {
+                    var td = document.createElement('td');
+                    td.textContent = row[key];
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+            });
+            
+            outputDiv.appendChild(table);
+        }
+    </script>
+</body>
+</html>
