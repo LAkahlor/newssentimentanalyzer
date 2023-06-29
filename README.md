@@ -21,26 +21,4 @@ python news_article_scraper.py
 Use code with caution. Learn more
 The script will prompt you to enter the name of a CSV file that contains the URLs of the news articles. Enter the name of the CSV file and press Enter. The script will then scrape the text of the news articles and save them to a SQLite database called articles.db.
 
-Output
 
-The SQLite database will contain the following tables:
-
-articles: This table contains the following columns:
-source: The URL of the news article
-article: The text of the news article
-Example
-
-The following is an example of the output of the script:
-
-Code snippet
->>> python news_article_scraper.py
-Select a CSV file:
-1. news_articles.csv
-
-Enter the number of your selection: 1
-
-Data saved for https://www.nytimes.com/2023/05/15/business/dealbook/elon-musk-twitter-deal.html
-Data saved for https://www.washingtonpost.com/technology/2023/05/15/elon-musk-twitter-deal-final/
-Data saved for https://www.cnn.com/2023/05/15/tech/elon-musk-twitter-deal-trnd/index.html
-Use code with caution. Learn more
-In this example, the script has scraped the text of three news articles from the CSV file news_articles.csv and saved them to the SQLite database articles.db.
